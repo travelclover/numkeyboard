@@ -1,5 +1,6 @@
 // const $ = require('jquery');
 import { isMobileDevice } from './utils.js'
+import { createKeyboard } from './createKeyboard.js'
 
 (function (win) {
     let numKeyboard = {},
@@ -7,7 +8,6 @@ import { isMobileDevice } from './utils.js'
 
     function _initNumKeyboard() {
         // 查找包含 data-num-keyboard 属性的 DOM
-        console.log($('.package-name'));
         var targetDOM = [];
         getTargetDom(document.body);
         console.log(targetDOM);
@@ -32,7 +32,9 @@ import { isMobileDevice } from './utils.js'
 
     // 绑定事件
     function bindEventByEventType(el) {
-        let eventFn = function () { alert(1) }; // 绑定的事件
+        let eventFn = function () { // 绑定的事件函数
+            document.querySelector('#numKeyboard').className += ' show';
+        };
         let isMobile = isMobileDevice(); // 判断是否是移动设备
         let eventType = isMobile ? 'tap' : 'click';
         let haveEventType = false;
@@ -52,4 +54,8 @@ import { isMobileDevice } from './utils.js'
     }
 
     win.numKeyboard = numKeyboard;
+
+    // body钟添加numKeyboardDOM
+    let keyboard = createKeyboard();
+    document.body.appendChild(keyboard);
 })(window)
