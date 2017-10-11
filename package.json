@@ -1,0 +1,39 @@
+{
+  "name": "numkeyboard",
+  "version": "0.0.1",
+  "description": "这是一个简单的数字键盘插件，不需要依赖任何文件资源。有退格，有清除，可输入小数与负数。适用于移动端。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node build/build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/travelclover/numkeyboard.git"
+  },
+  "keywords": [
+    "number",
+    "keyboard",
+    "mobile"
+  ],
+  "author": "travelclover",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/travelclover/numkeyboard/issues"
+  },
+  "homepage": "https://github.com/travelclover/numkeyboard#readme",
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "chalk": "^2.1.0",
+    "clean-webpack-plugin": "^0.1.17",
+    "html-webpack-plugin": "^2.30.1",
+    "ora": "^1.3.0",
+    "rimraf": "^2.6.2",
+    "webpack": "^3.6.0"
+  }
+}
