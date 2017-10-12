@@ -22,14 +22,31 @@ function removeElement(_element) {
 /**
  * 删除class类
  * @param  {object} el  需要删除class的节点
- * @param  {object} cls 需要删除的class
+ * @param  {string} cls 需要删除的class
  */
 function removeClass(el, cls) {
     var oldClassStr = ' ' + el.className + ' ';
     oldClassStr = oldClassStr.replace(/(\s+)/gi, ' ');
-    var removedClassStr = oldClassStr.replace(' ' + cls + ' ', ' ');
+    var regExp = new RegExp(' ' + cls + ' ', 'g');
+    var removedClassStr = oldClassStr.replace(regExp, ' ');
     removedClassStr = removedClassStr.substr(1, removedClassStr.length - 2);
     el.className = removedClassStr;
+}
+
+/**
+ * 添加class类
+ * @param  {object} el  需要添加class的节点
+ * @param  {string} cls 需要添加的class
+ */
+function addClass(el, cls) {
+    var oldClassStr = ' ' + el.className + ' ';
+    oldClassStr = oldClassStr.replace(/(\s+)/gi, ' ');
+    var regExp = new RegExp(' ' + cls + ' ', 'g');
+    var newClassStr;
+    if (!regExp.test(oldClassStr)) {
+        newClassStr = oldClassStr + cls;
+        el.className = newClassStr.substr(1, newClassStr.length - 1);
+    }
 }
 
 /**
@@ -65,5 +82,7 @@ function isMobileDevice() {
 export {
     haveChild,
     removeElement, // 删除dom节点
+    removeClass, // 删除class
+    addClass, // 增加class
     isMobileDevice, // 判断是否是移动设备
 }
