@@ -13,16 +13,23 @@
             padding: 0;
         }
 
-        .wrapper {
+        .num-keyboard-wrapper {
             width: 100%;
             height: 300px;
             position: fixed;
+            bottom: -300px;
+            transition: all 0.4s;
+            -webkit-transition: all 0.4s;
+            -moz-transition: all 0.4s;
+        }
+        .num-keyboard-wrapper.show {
             bottom: 0;
         }
 
         .num-keyboard-wrap {
             width: 100%;
             height: 100%;
+            margin: 0 auto;
             z-index: 5000;
             -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
             box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
@@ -127,7 +134,7 @@
             color: #555;
         }
 
-        .nk-key-wrap .nk-key-cancel{
+        .nk-key-wrap .nk-key-cancel {
             background-color: #F99595;
             color: #fff;
         }
@@ -140,7 +147,7 @@
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="num-keyboard-wrapper">
         <div class="num-keyboard-wrap">
             <div class="nk-screen-wrap">
                 <p class="nk-screen">999</p>

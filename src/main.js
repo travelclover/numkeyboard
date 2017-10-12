@@ -1,6 +1,7 @@
 // const $ = require('jquery');
 import { isMobileDevice } from './utils.js'
 import { createKeyboard } from './createKeyboard.js'
+import createStyle from './createStyle' // 生成样式文件
 
 (function (win) {
     let numKeyboard = {},
@@ -55,7 +56,9 @@ import { createKeyboard } from './createKeyboard.js'
 
     win.numKeyboard = numKeyboard;
 
-    // body钟添加numKeyboardDOM
+    // body中添加numKeyboardDOM
     let keyboard = createKeyboard();
     document.body.appendChild(keyboard);
+    // 添加style样式
+    createStyle();
 })(window)
