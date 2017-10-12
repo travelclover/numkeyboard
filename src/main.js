@@ -5,7 +5,8 @@ import createStyle from './createStyle' // 生成样式文件
 
 (function (win) {
     let numKeyboard = {},
-        targetDOM = [];
+        targetDOM = [], // 目标DOM
+        screenText = ''; // 屏幕显示文本
 
     function _initNumKeyboard() {
         // 查找包含 data-num-keyboard 属性的 DOM
@@ -57,7 +58,7 @@ import createStyle from './createStyle' // 生成样式文件
     win.numKeyboard = numKeyboard;
 
     // body中添加numKeyboardDOM
-    let keyboard = createKeyboard();
+    let keyboard = createKeyboard(screenText);
     document.body.appendChild(keyboard);
     // 添加style样式
     createStyle();

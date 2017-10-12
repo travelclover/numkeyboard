@@ -1,7 +1,7 @@
 import { removeElement } from './utils'
 
 // 生成keyboard DOM
-function createKeyboard() {
+function createKeyboard(screenText) {
     let keyboardDOM = document.createElement('div');
     keyboardDOM.className = 'num-keyboard-wrapper';
     keyboardDOM.id = 'numKeyboard';
@@ -72,13 +72,14 @@ function createKeyboard() {
             </div>
         </div>
     </div>`;
-    // 绑定取消事件
-    keyboardDOM.addEventListener('click', function (e) {
+    // 绑定事件
+    keyboardDOM.querySelector('.nk-keys-wrap').addEventListener('click', function (e) {
         console.log(e)
+        let keyBtn; // 点击的按键
         let classNameList = e.target.className.split(' '); // 点击DOM的class列表
         for (var i = 0, len_i = classNameList.length; i < len_i; i++) {
             // 点击取消
-            if (classNameList[i] == 'nk-key-cancel') {
+            /*if (classNameList[i] == 'nk-key-cancel') {
                 let numKeyboardClassList = document.querySelector('#numKeyboard').className.split(' ');
                 let newNumKeyboardClassName = '';
                 for (var j = 0, len_j = numKeyboardClassList.length; j < len_j; j++) {
@@ -88,7 +89,75 @@ function createKeyboard() {
                 }
                 document.querySelector('#numKeyboard').className = newNumKeyboardClassName;
                 break
+            }*/
+            switch (classNameList[i]) {
+                case 'nk-key-1':
+                    screenText += '1';
+                    keyBtn = 'nk-key-1';
+                    break;
+                case 'nk-key-2':
+                    screenText += '2';
+                    keyBtn = 'nk-key-2';
+                    break;
+                case 'nk-key-3':
+                    screenText += '3';
+                    keyBtn = 'nk-key-3';
+                    break;
+                case 'nk-key-4':
+                    screenText += '4';
+                    keyBtn = 'nk-key-4';
+                    break;
+                case 'nk-key-5':
+                    screenText += '5';
+                    keyBtn = 'nk-key-5';
+                    break;
+                case 'nk-key-6':
+                    screenText += '6';
+                    keyBtn = 'nk-key-6';
+                    break;
+                case 'nk-key-7':
+                    screenText += '7';
+                    keyBtn = 'nk-key-7';
+                    break;
+                case 'nk-key-8':
+                    screenText += '8';
+                    keyBtn = 'nk-key-8';
+                    break;
+                case 'nk-key-9':
+                    screenText += '9';
+                    keyBtn = 'nk-key-9';
+                    break;
+                case 'nk-key-0':
+                    screenText += '0';
+                    keyBtn = 'nk-key-0';
+                    break;
+                case 'nk-key-done':
+                    keyBtn = 'nk-key-done';
+                    break;
+                case 'nk-key-cancel':
+                    keyBtn = 'nk-key-cancel';
+                    break;
+                case 'nk-key-del':
+                    keyBtn = 'nk-key-del';
+                    break;
+                case 'nk-key-clear':
+                    keyBtn = 'nk-key-clear';
+                    break;
+                case 'nk-key-point':
+                    keyBtn = 'nk-key-point';
+                    break;
+                case 'nk-key-negative':
+                    keyBtn = 'nk-key-negative';
+                    break;
             }
+            if (keyBtn) {
+                break;
+            }
+        }
+        // 点击了按钮
+        if (keyBtn) {
+            // 刷新screen显示数字
+            document.querySelector('#numKeyboard .nk-screen').textContent = screenText;
         }
     }, false)
     return keyboardDOM;
