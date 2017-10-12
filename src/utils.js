@@ -12,11 +12,24 @@ function haveChild(el) {
  * @param  {object} _element 需要删除的节点
  * @return {[type]}          [description]
  */
-function removeElement (_element) {
-  var _parentElement = _element.parentNode;
-  if (_parentElement) {
-    _parentElement.removeChild(_element);
-  }
+function removeElement(_element) {
+    var _parentElement = _element.parentNode;
+    if (_parentElement) {
+        _parentElement.removeChild(_element);
+    }
+}
+
+/**
+ * 删除class类
+ * @param  {object} el  需要删除class的节点
+ * @param  {object} cls 需要删除的class
+ */
+function removeClass(el, cls) {
+    var oldClassStr = ' ' + el.className + ' ';
+    oldClassStr = oldClassStr.replace(/(\s+)/gi, ' ');
+    var removedClassStr = oldClassStr.replace(' ' + cls + ' ', ' ');
+    removedClassStr = removedClassStr.substr(1, removedClassStr.length - 2);
+    el.className = removedClassStr;
 }
 
 /**
