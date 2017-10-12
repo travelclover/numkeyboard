@@ -1,9 +1,14 @@
-import { removeElement } from './utils'
+import {
+    removeElement,
+    addClass,
+    removeClass,
+    isMobileDevice
+} from './utils'
 
 // 生成keyboard DOM
 function createKeyboard(screenText) {
     let keyboardDOM = document.createElement('div');
-    keyboardDOM.className = 'num-keyboard-wrapper';
+    keyboardDOM.className = 'num-keyboard-wrapper hidden';
     keyboardDOM.id = 'numKeyboard';
     keyboardDOM.innerHTML = `<div class="num-keyboard-wrap">
         <div class="nk-screen-wrap">
@@ -73,23 +78,12 @@ function createKeyboard(screenText) {
         </div>
     </div>`;
     // 绑定事件
-    keyboardDOM.querySelector('.nk-keys-wrap').addEventListener('click', function (e) {
+    let eventType = isMobileDevice() ? 'tap' : 'click';
+    keyboardDOM.querySelector('.nk-keys-wrap').addEventListener(eventType, function (e) {
         console.log(e)
         let keyBtn; // 点击的按键
         let classNameList = e.target.className.split(' '); // 点击DOM的class列表
         for (var i = 0, len_i = classNameList.length; i < len_i; i++) {
-            // 点击取消
-            /*if (classNameList[i] == 'nk-key-cancel') {
-                let numKeyboardClassList = document.querySelector('#numKeyboard').className.split(' ');
-                let newNumKeyboardClassName = '';
-                for (var j = 0, len_j = numKeyboardClassList.length; j < len_j; j++) {
-                    if (numKeyboardClassList[j] != 'show') {
-                        newNumKeyboardClassName += newNumKeyboardClassName.length > 0 ? numKeyboardClassList[j] : numKeyboardClassList[j] + ' ';
-                    }
-                }
-                document.querySelector('#numKeyboard').className = newNumKeyboardClassName;
-                break
-            }*/
             switch (classNameList[i]) {
                 case 'nk-key-1':
                     screenText += '1';
@@ -136,6 +130,10 @@ function createKeyboard(screenText) {
                     break;
                 case 'nk-key-cancel':
                     keyBtn = 'nk-key-cancel';
+                    removeClass(document.querySelector('#numKeyboard'), 'show');
+                    setTimeout(function () {
+                        addClass(document.querySelector('#numKeyboard'), 'hidden');
+                    }, 500);
                     break;
                 case 'nk-key-del':
                     keyBtn = 'nk-key-del';

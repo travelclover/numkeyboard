@@ -1,5 +1,8 @@
 // const $ = require('jquery');
-import { isMobileDevice } from './utils.js'
+import {
+    isMobileDevice,
+    removeClass
+} from './utils.js'
 import { createKeyboard } from './createKeyboard.js'
 import createStyle from './createStyle' // 生成样式文件
 
@@ -35,7 +38,10 @@ import createStyle from './createStyle' // 生成样式文件
     // 绑定事件
     function bindEventByEventType(el) {
         let eventFn = function () { // 绑定的事件函数
-            document.querySelector('#numKeyboard').className += ' show';
+            removeClass(document.querySelector('#numKeyboard'), 'hidden');
+            setTimeout(function () {
+                document.querySelector('#numKeyboard').className += ' show';
+            }, 0)
         };
         let isMobile = isMobileDevice(); // 判断是否是移动设备
         let eventType = isMobile ? 'tap' : 'click';

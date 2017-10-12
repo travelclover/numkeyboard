@@ -10,6 +10,9 @@ function createStyle() {
             -webkit-transition: all 0.4s;
             -moz-transition: all 0.4s;
         }
+        .num-keyboard-wrapper.hidden{
+            display: none;
+        }
         .num-keyboard-wrapper.show {
             bottom: 0;
         }
