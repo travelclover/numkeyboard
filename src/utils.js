@@ -50,6 +50,21 @@ function addClass(el, cls) {
 }
 
 /**
+ * 添加class类
+ * @param  {object} el  目标节点
+ * @param  {string} cls class名
+ */
+function hasClass(el, cls) {
+    var oldClassStr = ' ' + el.className + ' ';
+    oldClassStr = oldClassStr.replace(/(\s+)/gi, ' ');
+    var regExp = new RegExp(' ' + cls + ' ', 'g');
+    if (regExp.test(oldClassStr)) {
+        return true;
+    }
+    return false;
+}
+
+/**
  * 判断是否是移动端设备
  * @return {Boolean} 返回 true | false
  */
@@ -84,5 +99,6 @@ export {
     removeElement, // 删除dom节点
     removeClass, // 删除class
     addClass, // 增加class
+    hasClass, // 判断是否含有class
     isMobileDevice, // 判断是否是移动设备
 }
