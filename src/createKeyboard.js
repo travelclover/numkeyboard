@@ -6,13 +6,13 @@ import {
 } from './utils'
 
 // 生成keyboard DOM
-function createKeyboard(screenText) {
+function createKeyboard(nk) {
     let keyboardDOM = document.createElement('div');
     keyboardDOM.className = 'num-keyboard-wrapper hidden';
     keyboardDOM.id = 'numKeyboard';
     keyboardDOM.innerHTML = `<div class="num-keyboard-wrap">
         <div class="nk-screen-wrap">
-            <p class="nk-screen">999</p>
+            <p class="nk-screen"></p>
         </div>
         <div class="nk-keys-wrap">
             <div class="nk-row">
@@ -83,43 +83,43 @@ function createKeyboard(screenText) {
             switch (classNameList[i]) {
                 case 'nk-key-1':
                     keyBtn = 'nk-key-1';
-                    screenText += '1';
+                    nk.screenText += '1';
                     break;
                 case 'nk-key-2':
                     keyBtn = 'nk-key-2';
-                    screenText += '2';
+                    nk.screenText += '2';
                     break;
                 case 'nk-key-3':
                     keyBtn = 'nk-key-3';
-                    screenText += '3';
+                    nk.screenText += '3';
                     break;
                 case 'nk-key-4':
                     keyBtn = 'nk-key-4';
-                    screenText += '4';
+                    nk.screenText += '4';
                     break;
                 case 'nk-key-5':
                     keyBtn = 'nk-key-5';
-                    screenText += '5';
+                    nk.screenText += '5';
                     break;
                 case 'nk-key-6':
                     keyBtn = 'nk-key-6';
-                    screenText += '6';
+                    nk.screenText += '6';
                     break;
                 case 'nk-key-7':
                     keyBtn = 'nk-key-7';
-                    screenText += '7';
+                    nk.screenText += '7';
                     break;
                 case 'nk-key-8':
                     keyBtn = 'nk-key-8';
-                    screenText += '8';
+                    nk.screenText += '8';
                     break;
                 case 'nk-key-9':
                     keyBtn = 'nk-key-9';
-                    screenText += '9';
+                    nk.screenText += '9';
                     break;
                 case 'nk-key-0':
                     keyBtn = 'nk-key-0';
-                    screenText += '0';
+                    nk.screenText += '0';
                     break;
                 case 'nk-key-done':
                     keyBtn = 'nk-key-done';
@@ -133,15 +133,15 @@ function createKeyboard(screenText) {
                     break;
                 case 'nk-key-del':
                     keyBtn = 'nk-key-del';
-                    screenText = screenText.length > 0 ? screenText.substr(0, screenText.length - 1) : '';
+                    nk.screenText = nk.screenText.length > 0 ? nk.screenText.substr(0, nk.screenText.length - 1) : '';
                     break;
                 case 'nk-key-clear':
                     keyBtn = 'nk-key-clear';
-                    screenText = '';
+                    nk.screenText = '';
                     break;
                 case 'nk-key-point':
                     keyBtn = 'nk-key-point';
-                    screenText += '.';
+                    nk.screenText += '.';
                     break;
                 case 'nk-key-negative':
                     keyBtn = 'nk-key-negative';
@@ -154,7 +154,7 @@ function createKeyboard(screenText) {
         // 点击了按钮
         if (keyBtn) {
             // 刷新screen显示数字
-            document.querySelector('#numKeyboard .nk-screen').textContent = screenText;
+            document.querySelector('#numKeyboard .nk-screen').textContent = nk.screenText;
         }
     }, false)
     return keyboardDOM;
