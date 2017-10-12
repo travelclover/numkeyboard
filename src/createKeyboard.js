@@ -17,62 +17,58 @@ function createKeyboard(screenText) {
         <div class="nk-keys-wrap">
             <div class="nk-row">
                 <div class="nk-key-wrap">
-                    <!--<div class="nk-key nk-key-7">7</div>-->
-                    <a href="javascript:;" class="nk-key nk-key-7">7</a>
+                    <div class="nk-key nk-key-7">7</div>
                 </div>
                 <div class="nk-key-wrap">
-                    <!--<div class="nk-key nk-key-8">8</div>-->
-                    <a href="javascript:;" class="nk-key nk-key-8">8</a>
+                    <div class="nk-key nk-key-8">8</div>
                 </div>
                 <div class="nk-key-wrap">
-                    <!--<div class="nk-key nk-key-9">9</div>-->
-                    <a href="javascript:;" class="nk-key nk-key-9">9</a>
+                    <div class="nk-key nk-key-9">9</div>
                 </div>
                 <div class="nk-key-wrap">
-                    <!--<div class="nk-key nk-key-del">del</div>-->
-                    <a href="javascript:;" class="nk-key nk-key-del">del</a>
+                    <div class="nk-key nk-key-del">del</div>
                 </div>
             </div>
             <div class="nk-row">
                 <div class="nk-key-wrap">
-                    <a href="javascript:;" class="nk-key nk-key-4">4</a>
+                    <div class="nk-key nk-key-4">4</div>
                 </div>
                 <div class="nk-key-wrap">
-                    <a href="javascript:;" class="nk-key nk-key-5">5</a>
+                    <div class="nk-key nk-key-5">5</div>
                 </div>
                 <div class="nk-key-wrap">
-                    <a href="javascript:;" class="nk-key nk-key-6">6</a>
+                    <div class="nk-key nk-key-6">6</div>
                 </div>
                 <div class="nk-key-wrap">
-                    <a href="javascript:;" class="nk-key nk-key-clear">clear</a>
-                </div>
-            </div>
-            <div class="nk-row">
-                <div class="nk-key-wrap">
-                    <a href="javascript:;" class="nk-key nk-key-1">1</a>
-                </div>
-                <div class="nk-key-wrap">
-                    <a href="javascript:;" class="nk-key nk-key-2">2</a>
-                </div>
-                <div class="nk-key-wrap">
-                    <a href="javascript:;" class="nk-key nk-key-3">3</a>
-                </div>
-                <div class="nk-key-wrap">
-                    <a href="javascript:;" class="nk-key nk-key-cancel">cancel</a>
+                    <div class="nk-key nk-key-clear">clear</div>
                 </div>
             </div>
             <div class="nk-row">
                 <div class="nk-key-wrap">
-                    <a href="javascript:;" class="nk-key nk-key-negative">±</a>
+                    <div class="nk-key nk-key-1">1</div>
                 </div>
                 <div class="nk-key-wrap">
-                    <a href="javascript:;" class="nk-key nk-key-0">0</a>
+                    <div class="nk-key nk-key-2">2</div>
                 </div>
                 <div class="nk-key-wrap">
-                    <a href="javascript:;" class="nk-key nk-key-point">.</a>
+                    <div class="nk-key nk-key-3">3</div>
                 </div>
                 <div class="nk-key-wrap">
-                    <a href="javascript:;" class="nk-key nk-key-done">done</a>
+                    <div class="nk-key nk-key-cancel">cancel</div>
+                </div>
+            </div>
+            <div class="nk-row">
+                <div class="nk-key-wrap">
+                    <div class="nk-key nk-key-negative">±</div>
+                </div>
+                <div class="nk-key-wrap">
+                    <div class="nk-key nk-key-0">0</div>
+                </div>
+                <div class="nk-key-wrap">
+                    <div class="nk-key nk-key-point">.</div>
+                </div>
+                <div class="nk-key-wrap">
+                    <div class="nk-key nk-key-done">done</div>
                 </div>
             </div>
         </div>

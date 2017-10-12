@@ -52,6 +52,8 @@ function createStyle() {
             display: block;
             font-size: 14px;
             margin: 0;
+            word-break: break-all;
+            overflow-y: auto;
         }
         /*按键区域*/
 
