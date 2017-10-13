@@ -131,20 +131,33 @@ function createKeyboard(nk) {
                         addClass(document.querySelector('#numKeyboard'), 'hidden');
                     }, 500);
                     break;
-                case 'nk-key-del':
+                case 'nk-key-del': // 退格
                     keyBtn = 'nk-key-del';
                     nk.screenText = nk.screenText.length > 0 ? nk.screenText.substr(0, nk.screenText.length - 1) : '';
                     break;
-                case 'nk-key-clear':
+                case 'nk-key-clear': // 清空
                     keyBtn = 'nk-key-clear';
                     nk.screenText = '';
                     break;
-                case 'nk-key-point':
+                case 'nk-key-point': // 小数点
                     keyBtn = 'nk-key-point';
-                    nk.screenText += '.';
+                    if (!/\./.test(nk.screenText)) { // 判断是否存在小数点
+                        if (nk.screenText.trim().length === 0) { // 没有其它数字时，自动加前缀0
+                            nk.screenText = '0.';
+                        } else if (nk.screenText.trim().length === 1 && nk.screenText[0] == '-') { // 第一个为负号时
+                            nk.screenText += '0.';
+                        } else {
+                            nk.screenText += '.';
+                        }
+                    }
                     break;
-                case 'nk-key-negative':
+                case 'nk-key-negative': // 正负
                     keyBtn = 'nk-key-negative';
+                    if (/^-/.test(nk.screenText)) {
+                        nk.screenText = nk.screenText.substr(1, nk.screenText.length - 1);
+                    } else {
+                        nk.screenText = '-' + nk.screenText;
+                    }
                     break;
             }
             if (keyBtn) {
