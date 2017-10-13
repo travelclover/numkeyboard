@@ -76,7 +76,6 @@ function createKeyboard(nk) {
     // 绑定事件
     let eventType = isMobileDevice() ? 'tap' : 'click';
     keyboardDOM.querySelector('.nk-keys-wrap').addEventListener(eventType, function (e) {
-        console.log(e)
         let keyBtn; // 点击的按键
         let classNameList = e.target.className.split(' '); // 点击DOM的class列表
         for (var i = 0, len_i = classNameList.length; i < len_i; i++) {
@@ -121,15 +120,15 @@ function createKeyboard(nk) {
                     keyBtn = 'nk-key-0';
                     nk.screenText += '0';
                     break;
-                case 'nk-key-done':
+                case 'nk-key-done': // 确定
                     keyBtn = 'nk-key-done';
+                    nk.el.textContent = nk.screenText;
+                    nk.el.setAttribute('data-nk-value', nk.screenText);
+                    hideKeyboard(); // 隐藏键盘
                     break;
-                case 'nk-key-cancel':
+                case 'nk-key-cancel': // 取消
                     keyBtn = 'nk-key-cancel';
-                    removeClass(document.querySelector('#numKeyboard'), 'show');
-                    setTimeout(function () {
-                        addClass(document.querySelector('#numKeyboard'), 'hidden');
-                    }, 500);
+                    hideKeyboard(); // 隐藏键盘
                     break;
                 case 'nk-key-del': // 退格
                     keyBtn = 'nk-key-del';
@@ -171,6 +170,14 @@ function createKeyboard(nk) {
         }
     }, false)
     return keyboardDOM;
+}
+
+// 隐藏键盘
+function hideKeyboard() {
+    removeClass(document.querySelector('#numKeyboard'), 'show');
+    setTimeout(function () {
+        addClass(document.querySelector('#numKeyboard'), 'hidden');
+    }, 500);
 }
 
 export { createKeyboard }
