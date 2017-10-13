@@ -29,6 +29,9 @@ function removeClass(el, cls) {
     oldClassStr = oldClassStr.replace(/(\s+)/gi, ' ');
     var regExp = new RegExp(' ' + cls + ' ', 'g');
     var removedClassStr = oldClassStr.replace(regExp, ' ');
+    while (regExp.test(removedClassStr)) {
+        removedClassStr = removedClassStr.replace(regExp, ' ');
+    }
     removedClassStr = removedClassStr.substr(1, removedClassStr.length - 2);
     el.className = removedClassStr;
 }
