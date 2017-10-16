@@ -82,48 +82,48 @@ function createKeyboard(nk) {
             switch (classNameList[i]) {
                 case 'nk-key-1':
                     keyBtn = 'nk-key-1';
-                    nk.screenText += '1';
+                    nk.value += '1';
                     break;
                 case 'nk-key-2':
                     keyBtn = 'nk-key-2';
-                    nk.screenText += '2';
+                    nk.value += '2';
                     break;
                 case 'nk-key-3':
                     keyBtn = 'nk-key-3';
-                    nk.screenText += '3';
+                    nk.value += '3';
                     break;
                 case 'nk-key-4':
                     keyBtn = 'nk-key-4';
-                    nk.screenText += '4';
+                    nk.value += '4';
                     break;
                 case 'nk-key-5':
                     keyBtn = 'nk-key-5';
-                    nk.screenText += '5';
+                    nk.value += '5';
                     break;
                 case 'nk-key-6':
                     keyBtn = 'nk-key-6';
-                    nk.screenText += '6';
+                    nk.value += '6';
                     break;
                 case 'nk-key-7':
                     keyBtn = 'nk-key-7';
-                    nk.screenText += '7';
+                    nk.value += '7';
                     break;
                 case 'nk-key-8':
                     keyBtn = 'nk-key-8';
-                    nk.screenText += '8';
+                    nk.value += '8';
                     break;
                 case 'nk-key-9':
                     keyBtn = 'nk-key-9';
-                    nk.screenText += '9';
+                    nk.value += '9';
                     break;
                 case 'nk-key-0':
                     keyBtn = 'nk-key-0';
-                    nk.screenText += '0';
+                    nk.value += '0';
                     break;
                 case 'nk-key-done': // 确定
                     keyBtn = 'nk-key-done';
-                    nk.el.textContent = nk.screenText;
-                    nk.el.setAttribute('data-nk-value', nk.screenText);
+                    nk.elem.textContent = nk.value;
+                    nk.elem.setAttribute('data-nk-value', nk.value);
                     hideKeyboard(); // 隐藏键盘
                     break;
                 case 'nk-key-cancel': // 取消
@@ -132,30 +132,30 @@ function createKeyboard(nk) {
                     break;
                 case 'nk-key-del': // 退格
                     keyBtn = 'nk-key-del';
-                    nk.screenText = nk.screenText.length > 0 ? nk.screenText.substr(0, nk.screenText.length - 1) : '';
+                    nk.value = nk.value.length > 0 ? nk.value.substr(0, nk.value.length - 1) : '';
                     break;
                 case 'nk-key-clear': // 清空
                     keyBtn = 'nk-key-clear';
-                    nk.screenText = '';
+                    nk.value = '';
                     break;
                 case 'nk-key-point': // 小数点
                     keyBtn = 'nk-key-point';
-                    if (!/\./.test(nk.screenText)) { // 判断是否存在小数点
-                        if (nk.screenText.trim().length === 0) { // 没有其它数字时，自动加前缀0
-                            nk.screenText = '0.';
-                        } else if (nk.screenText.trim().length === 1 && nk.screenText[0] == '-') { // 第一个为负号时
-                            nk.screenText += '0.';
+                    if (!/\./.test(nk.value)) { // 判断是否存在小数点
+                        if (nk.value.trim().length === 0) { // 没有其它数字时，自动加前缀0
+                            nk.value = '0.';
+                        } else if (nk.value.trim().length === 1 && nk.value[0] == '-') { // 第一个为负号时
+                            nk.value += '0.';
                         } else {
-                            nk.screenText += '.';
+                            nk.value += '.';
                         }
                     }
                     break;
                 case 'nk-key-negative': // 正负
                     keyBtn = 'nk-key-negative';
-                    if (/^-/.test(nk.screenText)) {
-                        nk.screenText = nk.screenText.substr(1, nk.screenText.length - 1);
+                    if (/^-/.test(nk.value)) {
+                        nk.value = nk.value.substr(1, nk.value.length - 1);
                     } else {
-                        nk.screenText = '-' + nk.screenText;
+                        nk.value = '-' + nk.value;
                     }
                     break;
             }
@@ -166,7 +166,7 @@ function createKeyboard(nk) {
         // 点击了按钮
         if (keyBtn) {
             // 刷新screen显示数字
-            document.querySelector('#numKeyboard .nk-screen').textContent = nk.screenText;
+            document.querySelector('#numKeyboard .nk-screen').textContent = nk.value;
         }
     }, false)
     return keyboardDOM;
