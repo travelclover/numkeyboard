@@ -456,6 +456,12 @@ function createKeyboard(nk) {
         }
         // 点击了按钮
         if (keyBtn) {
+            // 为数字键盘时，判定数字规则是否正确
+            if (nk.typeNum != 1 && nk.value.trim().length == 2 && nk.value[0] == '0' && nk.value[1] != '.') {
+                nk.value = nk.value.substr(1, 1);
+            } else if (nk.typeNum != 1 && nk.value.trim().length == 3 && nk.value[0] == '-' && nk.value[1] == '0' && nk.value[2] != '.') {
+                nk.value = '-' + nk.value.substr(2, 1);
+            }
             // 刷新screen显示数字
             document.querySelector('#numKeyboard .nk-screen').textContent = nk.value;
         }
