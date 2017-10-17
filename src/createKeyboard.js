@@ -73,6 +73,9 @@ function createKeyboard(nk) {
             </div>
         </div>
     </div>`;
+    // 根据typeNum 隐藏按钮
+    hiddenBtnByTypeNum(keyboardDOM, nk.typeNum);
+
     // 绑定事件
     let eventType = isMobileDevice() ? 'tap' : 'click';
     keyboardDOM.querySelector('.nk-keys-wrap').addEventListener(eventType, function (e) {
@@ -170,6 +173,27 @@ function createKeyboard(nk) {
         }
     }, false)
     return keyboardDOM;
+}
+
+function hiddenBtnByTypeNum(el, typeNum) {
+    switch (typeNum) {
+        case 1: // 电话键盘
+            removeElement(el.querySelector('.nk-key-negative'));
+            removeElement(el.querySelector('.nk-key-point'));
+            break;
+        case 2: // 数字键盘
+            removeElement(el.querySelector('.nk-key-negative'));
+            removeElement(el.querySelector('.nk-key-point'));
+            break;
+        case 3: // 正负数字键盘
+            removeElement(el.querySelector('.nk-key-point'));
+            break;
+        case 4: // 含小数数字键盘
+            removeElement(el.querySelector('.nk-key-negative'));
+            break;
+        case 5: // 正负小数数字键盘
+            break;
+    }
 }
 
 // 隐藏键盘

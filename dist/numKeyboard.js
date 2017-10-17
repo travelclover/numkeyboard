@@ -243,12 +243,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             }
 
             // 获取当前触发键盘的dom
-            // nk.elem = this;
             for (var i = 0, len_i = DOMList.length; i < len_i; i++) {
                 if (this == DOMList[i]['elem']) {
                     // 获取原始数值
                     nk = DOMList[i];
-                    console.log(nk);
                 }
             }
 
@@ -261,7 +259,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             setTimeout(function () {
                 document.querySelector('#numKeyboard').className += ' show';
             }, 0);
-            console.log(nk);
         };
         newDOMObj.elem.addEventListener(newDOMObj.event, newDOMObj.eventFn, false);
     }
@@ -355,6 +352,9 @@ function createKeyboard(nk) {
     keyboardDOM.className = 'num-keyboard-wrapper hidden';
     keyboardDOM.id = 'numKeyboard';
     keyboardDOM.innerHTML = '<div class="num-keyboard-wrap">\n        <div class="nk-screen-wrap">\n            <p class="nk-screen">' + nk.value + '</p>\n        </div>\n        <div class="nk-keys-wrap">\n            <div class="nk-row">\n                <div class="nk-key-wrap">\n                    <div class="nk-key nk-key-7">7</div>\n                </div>\n                <div class="nk-key-wrap">\n                    <div class="nk-key nk-key-8">8</div>\n                </div>\n                <div class="nk-key-wrap">\n                    <div class="nk-key nk-key-9">9</div>\n                </div>\n                <div class="nk-key-wrap">\n                    <div class="nk-key nk-key-del">del</div>\n                </div>\n            </div>\n            <div class="nk-row">\n                <div class="nk-key-wrap">\n                    <div class="nk-key nk-key-4">4</div>\n                </div>\n                <div class="nk-key-wrap">\n                    <div class="nk-key nk-key-5">5</div>\n                </div>\n                <div class="nk-key-wrap">\n                    <div class="nk-key nk-key-6">6</div>\n                </div>\n                <div class="nk-key-wrap">\n                    <div class="nk-key nk-key-clear">clear</div>\n                </div>\n            </div>\n            <div class="nk-row">\n                <div class="nk-key-wrap">\n                    <div class="nk-key nk-key-1">1</div>\n                </div>\n                <div class="nk-key-wrap">\n                    <div class="nk-key nk-key-2">2</div>\n                </div>\n                <div class="nk-key-wrap">\n                    <div class="nk-key nk-key-3">3</div>\n                </div>\n                <div class="nk-key-wrap">\n                    <div class="nk-key nk-key-cancel">cancel</div>\n                </div>\n            </div>\n            <div class="nk-row">\n                <div class="nk-key-wrap">\n                    <div class="nk-key nk-key-negative">\xB1</div>\n                </div>\n                <div class="nk-key-wrap">\n                    <div class="nk-key nk-key-0">0</div>\n                </div>\n                <div class="nk-key-wrap">\n                    <div class="nk-key nk-key-point">.</div>\n                </div>\n                <div class="nk-key-wrap">\n                    <div class="nk-key nk-key-done">done</div>\n                </div>\n            </div>\n        </div>\n    </div>';
+    // 根据typeNum 隐藏按钮
+    hiddenBtnByTypeNum(keyboardDOM, nk.typeNum);
+
     // 绑定事件
     var eventType = (0, _utils.isMobileDevice)() ? 'tap' : 'click';
     keyboardDOM.querySelector('.nk-keys-wrap').addEventListener(eventType, function (e) {
@@ -461,6 +461,32 @@ function createKeyboard(nk) {
         }
     }, false);
     return keyboardDOM;
+}
+
+function hiddenBtnByTypeNum(el, typeNum) {
+    switch (typeNum) {
+        case 1:
+            // 电话键盘
+            (0, _utils.removeElement)(el.querySelector('.nk-key-negative'));
+            (0, _utils.removeElement)(el.querySelector('.nk-key-point'));
+            break;
+        case 2:
+            // 数字键盘
+            (0, _utils.removeElement)(el.querySelector('.nk-key-negative'));
+            (0, _utils.removeElement)(el.querySelector('.nk-key-point'));
+            break;
+        case 3:
+            // 正负数字键盘
+            (0, _utils.removeElement)(el.querySelector('.nk-key-point'));
+            break;
+        case 4:
+            // 含小数数字键盘
+            (0, _utils.removeElement)(el.querySelector('.nk-key-negative'));
+            break;
+        case 5:
+            // 正负小数数字键盘
+            break;
+    }
 }
 
 // 隐藏键盘
