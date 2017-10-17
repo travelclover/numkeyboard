@@ -37,7 +37,7 @@ module.exports = {
         })*/
 
         // 压缩 js (同样可以压缩 css)
-        new webpack.optimize.UglifyJsPlugin()
+        // new webpack.optimize.UglifyJsPlugin()
     ],
     //devtool: 'inline-source-map' // 使用source-map方便调试找错
 }

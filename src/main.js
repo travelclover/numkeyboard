@@ -1,7 +1,8 @@
 // const $ = require('jquery');
 import {
     isMobileDevice,
-    removeClass
+    removeClass,
+    removeElement
 } from './utils.js'
 import { createKeyboard } from './createKeyboard.js'
 import createStyle from './createStyle' // 生成样式文件
@@ -50,18 +51,28 @@ import createStyle from './createStyle' // 生成样式文件
             }
         }
         newDOMObj.eventFn = function () { // 绑定的事件函数
+            // 删除numKeyboard
+            if (document.querySelector('#numKeyboard')) {
+                removeElement(document.querySelector('#numKeyboard'));
+            }
+
             // 获取当前触发键盘的dom
-            nk.elem = this;
-            // 获取原始数值
-            nk.value = nk.elem.hasAttribute('data-nk-value') ? nk.elem.getAttribute('data-nk-value') : '';
-            document.querySelector('#numKeyboard .nk-screen').textContent = nk.value;
+            for (var i = 0, len_i = DOMList.length; i < len_i; i++) {
+                if (this == DOMList[i]['elem']) {
+                    // 获取原始数值
+                    nk = DOMList[i];
+                }
+            }
+
+            // body中添加numKeyboardDOM
+            let keyboard = createKeyboard(nk);
+            document.body.appendChild(keyboard);
 
             // 显示键盘
             removeClass(document.querySelector('#numKeyboard'), 'hidden');
             setTimeout(function () {
                 document.querySelector('#numKeyboard').className += ' show';
             }, 0);
-            console.log(nk)
         };
         newDOMObj.elem.addEventListener(newDOMObj.event, newDOMObj.eventFn, false);
     }
@@ -131,9 +142,7 @@ import createStyle from './createStyle' // 生成样式文件
 
     win.numKeyboard = numKeyboard;
 
-    // body中添加numKeyboardDOM
-    let keyboard = createKeyboard(nk);
-    document.body.appendChild(keyboard);
+
     // 添加style样式
     createStyle();
 })(window)

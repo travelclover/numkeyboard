@@ -12,7 +12,7 @@ function createKeyboard(nk) {
     keyboardDOM.id = 'numKeyboard';
     keyboardDOM.innerHTML = `<div class="num-keyboard-wrap">
         <div class="nk-screen-wrap">
-            <p class="nk-screen"></p>
+            <p class="nk-screen">${nk.value}</p>
         </div>
         <div class="nk-keys-wrap">
             <div class="nk-row">
@@ -177,6 +177,7 @@ function hideKeyboard() {
     removeClass(document.querySelector('#numKeyboard'), 'show');
     setTimeout(function () {
         addClass(document.querySelector('#numKeyboard'), 'hidden');
+        removeElement(document.querySelector('#numKeyboard'));
     }, 500);
 }
 
