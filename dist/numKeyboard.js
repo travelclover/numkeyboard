@@ -249,6 +249,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
                     nk = DOMList[i];
                 }
             }
+            nk.tempValue = ''; // 清空临时值
 
             // body中添加numKeyboardDOM
             var keyboard = (0, _createKeyboard.createKeyboard)(nk);
@@ -364,49 +365,50 @@ function createKeyboard(nk) {
             switch (classNameList[i]) {
                 case 'nk-key-1':
                     keyBtn = 'nk-key-1';
-                    nk.value += '1';
+                    nk.tempValue += '1';
                     break;
                 case 'nk-key-2':
                     keyBtn = 'nk-key-2';
-                    nk.value += '2';
+                    nk.tempValue += '2';
                     break;
                 case 'nk-key-3':
                     keyBtn = 'nk-key-3';
-                    nk.value += '3';
+                    nk.tempValue += '3';
                     break;
                 case 'nk-key-4':
                     keyBtn = 'nk-key-4';
-                    nk.value += '4';
+                    nk.tempValue += '4';
                     break;
                 case 'nk-key-5':
                     keyBtn = 'nk-key-5';
-                    nk.value += '5';
+                    nk.tempValue += '5';
                     break;
                 case 'nk-key-6':
                     keyBtn = 'nk-key-6';
-                    nk.value += '6';
+                    nk.tempValue += '6';
                     break;
                 case 'nk-key-7':
                     keyBtn = 'nk-key-7';
-                    nk.value += '7';
+                    nk.tempValue += '7';
                     break;
                 case 'nk-key-8':
                     keyBtn = 'nk-key-8';
-                    nk.value += '8';
+                    nk.tempValue += '8';
                     break;
                 case 'nk-key-9':
                     keyBtn = 'nk-key-9';
-                    nk.value += '9';
+                    nk.tempValue += '9';
                     break;
                 case 'nk-key-0':
                     keyBtn = 'nk-key-0';
-                    nk.value += '0';
+                    nk.tempValue += '0';
                     break;
                 case 'nk-key-done':
                     // 确定
                     keyBtn = 'nk-key-done';
-                    nk.elem.textContent = nk.value;
-                    nk.elem.setAttribute('data-nk-value', nk.value);
+                    nk.elem.textContent = nk.tempValue;
+                    nk.elem.setAttribute('data-nk-value', nk.tempValue);
+                    nk.value = nk.tempValue;
                     hideKeyboard(); // 隐藏键盘
                     break;
                 case 'nk-key-cancel':
@@ -417,36 +419,36 @@ function createKeyboard(nk) {
                 case 'nk-key-del':
                     // 退格
                     keyBtn = 'nk-key-del';
-                    nk.value = nk.value.length > 0 ? nk.value.substr(0, nk.value.length - 1) : '';
+                    nk.tempValue = nk.tempValue.length > 0 ? nk.tempValue.substr(0, nk.tempValue.length - 1) : '';
                     break;
                 case 'nk-key-clear':
                     // 清空
                     keyBtn = 'nk-key-clear';
-                    nk.value = '';
+                    nk.tempValue = '';
                     break;
                 case 'nk-key-point':
                     // 小数点
                     keyBtn = 'nk-key-point';
-                    if (!/\./.test(nk.value)) {
+                    if (!/\./.test(nk.tempValue)) {
                         // 判断是否存在小数点
-                        if (nk.value.trim().length === 0) {
+                        if (nk.tempValue.trim().length === 0) {
                             // 没有其它数字时，自动加前缀0
-                            nk.value = '0.';
-                        } else if (nk.value.trim().length === 1 && nk.value[0] == '-') {
+                            nk.tempValue = '0.';
+                        } else if (nk.tempValue.trim().length === 1 && nk.tempValue[0] == '-') {
                             // 第一个为负号时
-                            nk.value += '0.';
+                            nk.tempValue += '0.';
                         } else {
-                            nk.value += '.';
+                            nk.tempValue += '.';
                         }
                     }
                     break;
                 case 'nk-key-negative':
                     // 正负
                     keyBtn = 'nk-key-negative';
-                    if (/^-/.test(nk.value)) {
-                        nk.value = nk.value.substr(1, nk.value.length - 1);
+                    if (/^-/.test(nk.tempValue)) {
+                        nk.tempValue = nk.tempValue.substr(1, nk.tempValue.length - 1);
                     } else {
-                        nk.value = '-' + nk.value;
+                        nk.tempValue = '-' + nk.tempValue;
                     }
                     break;
             }
@@ -457,13 +459,13 @@ function createKeyboard(nk) {
         // 点击了按钮
         if (keyBtn) {
             // 为数字键盘时，判定数字规则是否正确
-            if (nk.typeNum != 1 && nk.value.trim().length == 2 && nk.value[0] == '0' && nk.value[1] != '.') {
-                nk.value = nk.value.substr(1, 1);
-            } else if (nk.typeNum != 1 && nk.value.trim().length == 3 && nk.value[0] == '-' && nk.value[1] == '0' && nk.value[2] != '.') {
-                nk.value = '-' + nk.value.substr(2, 1);
+            if (nk.typeNum != 1 && nk.tempValue.trim().length == 2 && nk.tempValue[0] == '0' && nk.tempValue[1] != '.') {
+                nk.tempValue = nk.tempValue.substr(1, 1);
+            } else if (nk.typeNum != 1 && nk.tempValue.trim().length == 3 && nk.tempValue[0] == '-' && nk.tempValue[1] == '0' && nk.tempValue[2] != '.') {
+                nk.tempValue = '-' + nk.tempValue.substr(2, 1);
             }
             // 刷新screen显示数字
-            document.querySelector('#numKeyboard .nk-screen').textContent = nk.value;
+            document.querySelector('#numKeyboard .nk-screen').textContent = nk.tempValue;
         }
     }, false);
     return keyboardDOM;

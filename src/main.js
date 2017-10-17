@@ -63,6 +63,7 @@ import createStyle from './createStyle' // 生成样式文件
                     nk = DOMList[i];
                 }
             }
+            nk.tempValue = ''; // 清空临时值
 
             // body中添加numKeyboardDOM
             let keyboard = createKeyboard(nk);
